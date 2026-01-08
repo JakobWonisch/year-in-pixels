@@ -29,15 +29,9 @@
       end
       behavior Color(c) -- When a color is clicked, it updates the selected pixel.
         on click
-          remove .twa-orange-square .twa-red-square .twa-green-square .twa-yellow-square .twa-blue-square .twa-purple-square .twa-black-large-square .twa-white-large-square from .border
-          if c == 0 add .twa-white-large-square to .border then set .border@data-color to 0 end
-          if c == 1 add .twa-red-square to .border then set .border@data-color to 1 end
-          if c == 2 add .twa-orange-square to .border then set .border@data-color to 2 end
-          if c == 3 add .twa-yellow-square to .border then set .border@data-color to 3 end
-          if c == 4 add .twa-green-square to .border then set .border@data-color to 4 end
-          if c == 5 add .twa-blue-square to .border then set .border@data-color to 5 end
-          if c == 6 add .twa-purple-square to .border then set .border@data-color to 6 end
-          if c == 7 add .twa-black-large-square to .border then set .border@data-color to 7 end
+          remove .color-0 .color-1 .color-2 .color-3 .color-4 .color-5 .color-6 .color-7 .color-8 .color-9 .color-10 from .border
+          add .{'color-' + c} to .border
+          set .border@data-color to c
           call save()
         end
       end
@@ -73,6 +67,78 @@
     .days>span {
       height: 1.636em;
     }
+
+    .bg-blend-multiply {
+      background-blend-mode: multiply;
+    }
+
+    .icon {
+      display: inline-block;
+      height: 1em;
+      width: 1em;
+      margin: 0 .05em 0 .1em;
+      vertical-align: -0.1em;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 1em 1em;
+      height: 1.33em;
+      width: 1.33em;
+      margin: 0 0.0665em 0 0.133em;
+      vertical-align: -0.133em;
+      background-size: 1.33em 1.33em;
+    }
+
+    .icon-2xl {
+      height: 2em;
+      width: 2em;
+      margin: 0 0.1em 0 0.2em;
+      vertical-align: -0.2em;
+      background-size: 2em 2em;
+    }
+
+    .color-0 {
+      background-color: #ECEDED;
+    }
+
+    .color-1 {
+      background-color: #fbf8cc;
+    }
+
+    .color-2 {
+      background-color: #fde4cf;
+    }
+
+    .color-3 {
+      background-color: #ffcfd2;
+    }
+
+    .color-4 {
+      background-color: #f1c0e8;
+    }
+
+    .color-5 {
+      background-color: #cfbaf0;
+    }
+
+    .color-6 {
+      background-color: #a3c4f3;
+    }
+
+    .color-7 {
+      background-color: #90dbf4;
+    }
+
+    .color-8 {
+      background-color: #8eecf5;
+    }
+
+    .color-9 {
+      background-color: #98f5e1;
+    }
+
+    .color-10 {
+      background-color: #b9fbc0;
+    }
   </style>
 
   <script src="./datasource.js"></script>
@@ -102,13 +168,16 @@
     <div id="pixels" class="d-flex"></div>
   </div>
   <div class="d-flex justify-content-center py-4">
-    <div _="install Color(c: 1)" class="clickable"><i class="twa twa-2x twa-red-square"></i></div>
-    <div _="install Color(c: 2)" class="clickable"><i class="twa twa-2x twa-orange-square"></i></div>
-    <div _="install Color(c: 3)" class="clickable"><i class="twa twa-2x twa-yellow-square"></i></div>
-    <div _="install Color(c: 4)" class="clickable"><i class="twa twa-2x twa-green-square"></i></div>
-    <div _="install Color(c: 5)" class="clickable"><i class="twa twa-2x twa-blue-square"></i></div>
-    <div _="install Color(c: 6)" class="clickable"><i class="twa twa-2x twa-purple-square"></i></div>
-    <div _="install Color(c: 7)" class="clickable"><i class="twa twa-2x twa-black-large-square"></i></div>
+    <div _="install Color(c: 1)" class="clickable"><i class="icon icon-2xl color-1"></i></div>
+    <div _="install Color(c: 2)" class="clickable"><i class="icon icon-2xl color-2"></i></div>
+    <div _="install Color(c: 3)" class="clickable"><i class="icon icon-2xl color-3"></i></div>
+    <div _="install Color(c: 4)" class="clickable"><i class="icon icon-2xl color-4"></i></div>
+    <div _="install Color(c: 5)" class="clickable"><i class="icon icon-2xl color-5"></i></div>
+    <div _="install Color(c: 6)" class="clickable"><i class="icon icon-2xl color-6"></i></div>
+    <div _="install Color(c: 7)" class="clickable"><i class="icon icon-2xl color-7"></i></div>
+    <div _="install Color(c: 8)" class="clickable"><i class="icon icon-2xl color-8"></i></div>
+    <div _="install Color(c: 9)" class="clickable"><i class="icon icon-2xl color-9"></i></div>
+    <div _="install Color(c: 10)" class="clickable"><i class="icon icon-2xl color-10"></i></div>
     <div _="install Color(c: 0)" class="clickable"><i class="twa twa-2x twa-wastebasket"></i></div>
   </div>
   <div class="d-flex justify-content-center justify-content-evenly mx-auto mb-3" style="width: 20em;">
@@ -174,17 +243,7 @@
         const monthPixels = [...Array(daysInMonth)].map((_, day) => {
           const dayOfYear = calcDayOfYear(year, month, day);
           const color = colors[dayOfYear] || 0;
-          const emoji = {
-            0: 'twa-white-large-square',
-            1: 'twa-red-square',
-            2: 'twa-orange-square',
-            3: 'twa-yellow-square',
-            4: 'twa-green-square',
-            5: 'twa-blue-square',
-            6: 'twa-purple-square',
-            7: 'twa-black-large-square',
-          }[color];
-          return `<div _='install Pixel'><i class='clickable twa twa-lg ${emoji}' data-color='${color}'></i></div>`
+          return `<div _='install Pixel'><i class='clickable icon overflow-hidden bg-blend-multiply rounded-5 color-${color}' data-color='${color}'></i></div>`
         }).join("");
         const title = `<div class="text-center">${monthNames[month]}</div>`;
         document.getElementById("title").innerText = `${year}`;
