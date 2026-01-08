@@ -25,7 +25,6 @@
         on click
           remove .border-2 .border-dark .rounded .border from .border 
           add .border-2 .border-dark .rounded .border to me.children 
-          log 'hello'
         end
       end
       behavior Color(c) -- When a color is clicked, it updates the selected pixel.
@@ -124,7 +123,7 @@
         return e.getAttribute('data-color')
       }).join('');
 
-      saveColors(getYear(), colors);
+      saveColors(getYear(), getCategory(), colors);
     }
 
     function calcDayOfYear(year, month, day) {
@@ -144,9 +143,9 @@
     let initialRender = true;
 
     function render() {
-      console.log("render");
       const year = getYear();
-      const colors = loadColors(year);
+      const category = getCategory();
+      const colors = loadColors(year, category);
 
       const pixelWrapperElement = document.getElementById("pixels");
 

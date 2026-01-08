@@ -34,3 +34,17 @@ function setYear(year) {
 
     saveState();
 }
+
+function getCategory() {
+    if (YEAR_TRACKER_STATE.category == null) {
+        YEAR_TRACKER_STATE.category = 0;
+    }
+
+    return YEAR_TRACKER_STATE.category;
+}
+
+function setCategory(category) {
+    YEAR_TRACKER_STATE.category = category;
+
+    saveState();
+}
