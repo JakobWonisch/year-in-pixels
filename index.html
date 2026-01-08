@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Year In Pixels</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SebastianAigner/twemoji-amazing/twemoji-amazing.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&amp;family=Vujahday+Script&amp;display=swap">
-    <link rel="icon" type="image/png" sizes="196x196" href="icons/favicon-196.png">
-    <link rel="apple-touch-icon" href="icons/apple-icon-180.png">
-    <link rel="manifest" href="manifest.json">
-    <!-- Fathom - beautiful, simple website analytics -->
-    <script src="https://cdn.usefathom.com/script.js" data-site="XUHUMFJO" defer></script>
-    <!-- / Fathom -->
-    <script src="https://unpkg.com/hyperscript.org@0.9.3"></script>
-    <script type="text/hyperscript">
+
+<head>
+  <title>Year In Pixels</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SebastianAigner/twemoji-amazing/twemoji-amazing.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=VT323&amp;family=Vujahday+Script&amp;display=swap">
+  <link rel="icon" type="image/png" sizes="196x196" href="icons/favicon-196.png">
+  <link rel="apple-touch-icon" href="icons/apple-icon-180.png">
+  <link rel="manifest" href="manifest.json">
+  <!-- Fathom - beautiful, simple website analytics -->
+  <script src="https://cdn.usefathom.com/script.js" data-site="XUHUMFJO" defer></script>
+  <!-- / Fathom -->
+  <script src="https://unpkg.com/hyperscript.org@0.9.3"></script>
+  <script type="text/hyperscript">
       behavior Pixel -- When a pixel is clicked, it gets selected.
         on click
           remove .border-2 .border-dark .rounded .border from .border 
@@ -39,86 +42,92 @@
         end
       end
     </script>
-    <style>
-      body {
-        font-family: 'VT323', monospace;
-        font-size: 1em;
-      }
-      h1 {
-        font-size: 2.5em;
-      }
-      .clickable {
-        cursor: pointer;
-      }
-      .clickable:hover {
-        opacity: 0.75;
-      }
-      .days>span {
-        height: 1.636em;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 class="text-center my-4">Year In Pixels</h1>
-    <div id="wrapper" class="d-flex justify-content-center">
-      <div class="d-flex flex-column pt-4 pb-1 text-center justify-content-between days">
-        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
-        <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
-        <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
-        <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
-        <span>29</span><span>30</span><span>31</span>
-      </div>
+  <style>
+    body {
+      font-family: 'VT323', monospace;
+      font-size: 1em;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    .clickable {
+      cursor: pointer;
+    }
+
+    .clickable:hover {
+      opacity: 0.75;
+    }
+
+    .days>span {
+      height: 1.636em;
+    }
+  </style>
+
+  <script src="./datasource.js"></script>
+  <script src="./state.js"></script>
+</head>
+
+<body>
+  <h1 class="text-center my-4">Year In Pixels</h1>
+  <div id="wrapper" class="d-flex justify-content-center">
+    <div class="d-flex flex-column pt-4 pb-1 text-center justify-content-between days">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+      <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+      <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+      <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+      <span>29</span><span>30</span><span>31</span>
     </div>
-    <div class="d-flex justify-content-center py-4">
-      <div _="install Color(c: 1)" class="clickable"><i class="twa twa-2x twa-red-square"></i></div>
-      <div _="install Color(c: 2)" class="clickable"><i class="twa twa-2x twa-orange-square"></i></div>
-      <div _="install Color(c: 3)" class="clickable"><i class="twa twa-2x twa-yellow-square"></i></div>
-      <div _="install Color(c: 4)" class="clickable"><i class="twa twa-2x twa-green-square"></i></div>
-      <div _="install Color(c: 5)" class="clickable"><i class="twa twa-2x twa-blue-square"></i></div>
-      <div _="install Color(c: 6)" class="clickable"><i class="twa twa-2x twa-purple-square"></i></div>
-      <div _="install Color(c: 7)" class="clickable"><i class="twa twa-2x twa-black-large-square"></i></div>
-      <div _="install Color(c: 0)" class="clickable"><i class="twa twa-2x twa-wastebasket"></i></div>
-    </div>
-    <div class="d-flex justify-content-center justify-content-evenly mx-auto mb-3" style="width: 20em;">
-      <a class="text-muted clickable" _="on click get prompt('Paste exported data here:') js(it) if(it) { localStorage.setItem('pixels', it); location.reload(); } end">Import</a>
-      <a class="text-muted clickable" _="on click js return localStorage.getItem('pixels') end get prompt('You can copy the following text and import it on another device.', it)">Export</a>
-      <a class="text-muted clickable" _="on click get confirm('Are you sure you want to clear your data?') js(it) if(it) { localStorage.removeItem('pixels'); location.reload(); } end">Clear</a>
-      <a class="text-muted clickable" _="on click alert('Keep track of whatever you want in a year using pixels! Data is stored on your device, and can be imported and exported. Created by Jonathan Peacher.')">About</a>      
-    </div>
-    <div class="d-flex justify-content-center justify-content-evenly mx-auto mb-5">
-      <p>
-        Made with <i class="twa twa-red-heart"></i> by
-        <a href="https://www.djpeacher.com" target="_blank">Jonathan Peacher</a>
-      </p>
-    </div>
-    <script>
-      function save() {
-        const colors = Array.prototype.slice.call(document.body.getElementsByTagName("i")).map(function(e) {
-          return e.getAttribute('data-color')
-        }).join('');
-        const year = localStorage.getItem('pixels').split(',')[0];
-        localStorage.setItem('pixels', year + ',' + colors);
-      }
-      
-      function calcDayOfYear(year, month, day) {
-        // https://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
-        const now = new Date(year, month, day);
-        const start = new Date(year, 0, 0);
-        const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-        const oneDay = 1000 * 60 * 60 * 24;
-        return Math.floor(diff / oneDay);
-      }
-      
-      // Init data.
-      let pixels = localStorage.getItem('pixels');
-      if (!pixels) {
-        pixels = new Date().getFullYear().toString();
-        localStorage.setItem('pixels', pixels);
-      }
-      pixels = pixels.split(',');
-      const year = pixels[0];
-      const colors = pixels[1] || [];
-      
+  </div>
+  <div class="d-flex justify-content-center py-4">
+    <div _="install Color(c: 1)" class="clickable"><i class="twa twa-2x twa-red-square"></i></div>
+    <div _="install Color(c: 2)" class="clickable"><i class="twa twa-2x twa-orange-square"></i></div>
+    <div _="install Color(c: 3)" class="clickable"><i class="twa twa-2x twa-yellow-square"></i></div>
+    <div _="install Color(c: 4)" class="clickable"><i class="twa twa-2x twa-green-square"></i></div>
+    <div _="install Color(c: 5)" class="clickable"><i class="twa twa-2x twa-blue-square"></i></div>
+    <div _="install Color(c: 6)" class="clickable"><i class="twa twa-2x twa-purple-square"></i></div>
+    <div _="install Color(c: 7)" class="clickable"><i class="twa twa-2x twa-black-large-square"></i></div>
+    <div _="install Color(c: 0)" class="clickable"><i class="twa twa-2x twa-wastebasket"></i></div>
+  </div>
+  <div class="d-flex justify-content-center justify-content-evenly mx-auto mb-3" style="width: 20em;">
+    <a class="text-muted clickable"
+      _="on click get prompt('Paste exported data here:') js(it) if(it) { localStorage.setItem('pixels', it); location.reload(); } end">Import</a>
+    <a class="text-muted clickable"
+      _="on click js return localStorage.getItem('pixels') end get prompt('You can copy the following text and import it on another device.', it)">Export</a>
+    <a class="text-muted clickable"
+      _="on click get confirm('Are you sure you want to clear your data?') js(it) if(it) { localStorage.removeItem('pixels'); location.reload(); } end">Clear</a>
+    <a class="text-muted clickable"
+      _="on click alert('Keep track of whatever you want in a year using pixels! Data is stored on your device, and can be imported and exported. Created by Jonathan Peacher.')">About</a>
+  </div>
+  <div class="d-flex justify-content-center justify-content-evenly mx-auto mb-5">
+    <p>
+      Made with <i class="twa twa-red-heart"></i> by
+      <a href="https://www.djpeacher.com" target="_blank">Jonathan Peacher</a>
+    </p>
+  </div>
+  <script>
+    function save() {
+      const colors = Array.prototype.slice.call(document.body.getElementsByTagName("i")).map(function (e) {
+        return e.getAttribute('data-color')
+      }).join('');
+
+      saveColors(getYear(), colors);
+    }
+
+    function calcDayOfYear(year, month, day) {
+      // https://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
+      const now = new Date(year, month, day);
+      const start = new Date(year, 0, 0);
+      const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+      const oneDay = 1000 * 60 * 60 * 24;
+      return Math.floor(diff / oneDay);
+    }
+
+    function render() {
+      const year = getYear();
+      const colors = loadColors(year);
+
       // Render calendar.
       const monthNames = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
       [...Array(12)].forEach((_, month) => {
@@ -135,16 +144,19 @@
             5: 'twa-blue-square',
             6: 'twa-purple-square',
             7: 'twa-black-large-square',
-          } [color];
+          }[color];
           return `<div _='install Pixel'><i class='clickable twa twa-lg ${emoji}' data-color='${color}'></i></div>`
         }).join("");
         const title = `<div class="text-center">${monthNames[month]}</div>`;
         document.getElementById("wrapper").insertAdjacentHTML('beforeend', `<div class='d-flex flex-column'>${title}${monthPixels}</div>`)
       });
-      
-      // Save.
-      save();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </body>
+    }
+
+    render();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
