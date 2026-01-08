@@ -17,7 +17,7 @@
   <link rel="apple-touch-icon" href="icons/apple-icon-180.png">
   <link rel="manifest" href="manifest.json">
   <!-- Fathom - beautiful, simple website analytics -->
-  <script src="https://cdn.usefathom.com/script.js" data-site="XUHUMFJO" defer></script>
+  <!-- <script src="https://cdn.usefathom.com/script.js" data-site="XUHUMFJO" defer></script> -->
   <!-- / Fathom -->
   <script src="https://unpkg.com/hyperscript.org@0.9.3"></script>
   <script type="text/hyperscript">
@@ -25,6 +25,7 @@
         on click
           remove .border-2 .border-dark .rounded .border from .border 
           add .border-2 .border-dark .rounded .border to me.children 
+          log 'hello'
         end
       end
       behavior Color(c) -- When a color is clicked, it updates the selected pixel.
@@ -39,6 +40,11 @@
           if c == 6 add .twa-purple-square to .border then set .border@data-color to 6 end
           if c == 7 add .twa-black-large-square to .border then set .border@data-color to 7 end
           call save()
+        end
+      end
+      behavior Year(d) -- When year is changed
+        on click
+          call changeYear(d)
         end
       end
     </script>
@@ -71,6 +77,11 @@
 
 <body>
   <h1 class="text-center my-4">Year In Pixels</h1>
+  <div class="d-flex flex-row align-items-center justify-content-center gap-3">
+    <div _="install Year(d: -1)" class="clickable">⇠</div>
+    <h2 id="title">XXXX</h2>
+    <div _="install Year(d: 1)" class="clickable">⇢</div>
+  </div>
   <div id="wrapper" class="d-flex justify-content-center">
     <div class="d-flex flex-column pt-4 pb-1 text-center justify-content-between days">
       <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
@@ -79,6 +90,7 @@
       <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
       <span>29</span><span>30</span><span>31</span>
     </div>
+    <div id="pixels" class="d-flex"></div>
   </div>
   <div class="d-flex justify-content-center py-4">
     <div _="install Color(c: 1)" class="clickable"><i class="twa twa-2x twa-red-square"></i></div>
@@ -124,9 +136,22 @@
       return Math.floor(diff / oneDay);
     }
 
+    function changeYear(d) {
+      setYear((Number(getYear()) + d).toString());
+      render();
+    }
+
+    let initialRender = true;
+
     function render() {
+      console.log("render");
       const year = getYear();
       const colors = loadColors(year);
+
+      const pixelWrapperElement = document.getElementById("pixels");
+
+      // clear wrapper
+      pixelWrapperElement.innerHTML = '';
 
       // Render calendar.
       const monthNames = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
@@ -148,8 +173,16 @@
           return `<div _='install Pixel'><i class='clickable twa twa-lg ${emoji}' data-color='${color}'></i></div>`
         }).join("");
         const title = `<div class="text-center">${monthNames[month]}</div>`;
-        document.getElementById("wrapper").insertAdjacentHTML('beforeend', `<div class='d-flex flex-column'>${title}${monthPixels}</div>`)
+        document.getElementById("title").innerText = `${year}`;
+        pixelWrapperElement.insertAdjacentHTML('beforeend', `<div class='d-flex flex-column'>${title}${monthPixels}</div>`);
       });
+
+      if (!initialRender) {
+        // reinstall behaviors
+        _hyperscript.processNode(pixelWrapperElement);
+      }
+
+      initialRender = false;
     }
 
     render();
