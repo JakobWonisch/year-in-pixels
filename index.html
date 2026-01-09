@@ -147,8 +147,13 @@
     .color-10 {
       background-color: #b9fbc0;
     }
+
+    .w-150px {
+      width: 150px;
+    }
   </style>
 
+  <script src="./constants.js"></script>
   <script src="./datasource.js"></script>
   <script src="./state.js"></script>
 </head>
@@ -162,7 +167,7 @@
   </div>
   <div class="d-flex flex-row align-items-center justify-content-center gap-3">
     <button class="btn primary" _="install Category(d: -1)" class="clickable">⇠</button>
-    <h3 id="category" class="mb-0" data-category="-1">XXXX</h3>
+    <h3 id="category" class="mb-0 text-wrap w-150px text-center text-break" data-category="-1">XXXX</h3>
 
     <div id="edit-category-modal" class="modal fade" tabindex="-1" aria-hidden="true" _="
     on hidden.bs.modal
@@ -304,7 +309,9 @@
       });
 
       document.getElementById("title").innerText = `${year}`;
-      document.getElementById("category").innerText = loadCategories(year)[category] ?? `Category ${category}`;
+      let positiveCategory = category;
+      while (positiveCategory < 0) { positiveCategory += CATEGORY_SUGGESTIONS.length; }
+      document.getElementById("category").innerText = loadCategories(year)[category] ?? `${CATEGORY_SUGGESTIONS[positiveCategory % CATEGORY_SUGGESTIONS.length]}?`;
       document.getElementById("category").dataset.category = category;
 
       if (!initialRender) {
