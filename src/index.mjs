@@ -1,6 +1,10 @@
+import _hyperscript from "hyperscript.org"; "hyperscript.org";
 import { getYear, getCategory, setYear, setCategory } from "./state.mjs";
 import { saveColors, saveCategory, loadCategories, loadColors } from "./datasource.mjs";
 import { CATEGORY_SUGGESTIONS } from "./constants.mjs";
+
+window._hyperscript = _hyperscript;
+window._hyperscript.browserInit();
 
 window.save = function save() {
     const colors = Array.prototype.slice.call(document.body.getElementsByTagName("i")).map(function (e) {
