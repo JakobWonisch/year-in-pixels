@@ -7,8 +7,8 @@
     "tauri": "tauri",
     "tauri:desktop": "tauri dev",
     "tauri:android:dev": "tauri android dev",
-    "tauri:android:prod": "tauri android build -- --aab",
-    "tauri:android:apk": "npm run tauri android build -- --apk",
+    "tauri:android:prod": "tauri android build",
+    "tauri:android:apk": "tauri android build --apk",
     "vite:dev": "vite",
     "vite:build": "vite build",
     "vite:preview": "vite preview"
