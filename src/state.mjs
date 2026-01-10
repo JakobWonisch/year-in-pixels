@@ -17,11 +17,11 @@ try {
     // use default
 }
 
-function saveState() {
+export function saveState() {
     localStorage.setItem('state', JSON.stringify(YEAR_TRACKER_STATE));
 }
 
-function getYear() {
+export function getYear() {
     if (YEAR_TRACKER_STATE.year == null) {
         YEAR_TRACKER_STATE.year = new Date().getFullYear().toString();
     }
@@ -29,13 +29,13 @@ function getYear() {
     return YEAR_TRACKER_STATE.year;
 }
 
-function setYear(year) {
+export function setYear(year) {
     YEAR_TRACKER_STATE.year = year;
 
     saveState();
 }
 
-function getCategory() {
+export function getCategory() {
     if (YEAR_TRACKER_STATE.category == null) {
         YEAR_TRACKER_STATE.category = 0;
     }
@@ -43,7 +43,7 @@ function getCategory() {
     return YEAR_TRACKER_STATE.category;
 }
 
-function setCategory(category) {
+export function setCategory(category) {
     YEAR_TRACKER_STATE.category = category;
 
     saveState();

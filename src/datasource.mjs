@@ -27,11 +27,11 @@ function saveAll(data) {
 }
 
 
-function loadColors(year, category) {
+export function loadColors(year, category) {
     return ((loadAll()[year] ?? {})["colors"] ?? {})[category] ?? [];
 }
 
-function saveColors(year, category, colors) {
+export function saveColors(year, category, colors) {
     const data = loadAll();
 
     data[year] ??= {};
@@ -41,13 +41,13 @@ function saveColors(year, category, colors) {
     saveAll(data);
 }
 
-function loadCategories(year) {
+export function loadCategories(year) {
     return (loadAll()[year] ?? [])["categories"] ?? {
         0: "Default"
     };
 }
 
-function saveCategory(year, category, categoryName) {
+export function saveCategory(year, category, categoryName) {
     const data = loadAll();
 
     data[year] ??= {};

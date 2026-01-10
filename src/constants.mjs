@@ -1,5 +1,5 @@
 
-const CATEGORY_SUGGESTIONS = [
+export const CATEGORY_SUGGESTIONS = [
     "Sports",
     "Sleep",
     "Mood",

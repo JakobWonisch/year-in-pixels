@@ -94,6 +94,7 @@
       margin: 0 0.0665em 0 0.133em;
       vertical-align: -0.133em;
       background-size: 1.33em 1.33em;
+      border-radius: 12%;
     }
 
     .icon-2xl {
@@ -152,10 +153,6 @@
       width: 150px;
     }
   </style>
-
-  <script type="module" src="./constants.js"></script>
-  <script type="module" src="./datasource.js"></script>
-  <script type="module" src="./state.js"></script>
 </head>
 
 <body>
@@ -250,80 +247,7 @@
       <a href="https://www.hierwonisch.at" target="_blank">Jakob Wonisch</a>
     </p>
   </div>
-  <script>
-    function save() {
-      const colors = Array.prototype.slice.call(document.body.getElementsByTagName("i")).map(function (e) {
-        return e.getAttribute('data-color')
-      }).join('');
-
-      saveColors(getYear(), getCategory(), colors);
-    }
-
-    function calcDayOfYear(year, month, day) {
-      // https://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
-      const now = new Date(year, month, day);
-      const start = new Date(year, 0, 0);
-      const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-      const oneDay = 1000 * 60 * 60 * 24;
-      return Math.floor(diff / oneDay);
-    }
-
-    function changeYear(d) {
-      setYear((Number(getYear()) + d).toString());
-      render();
-    }
-
-    function changeCategory(d) {
-      setCategory(getCategory() + d);
-      render();
-    }
-
-    function updateCategory(text) {
-      saveCategory(getYear(), getCategory(), text);
-      render();
-    }
-
-    let initialRender = true;
-
-    function render() {
-      const year = getYear();
-      const category = getCategory();
-      const colors = loadColors(year, category);
-
-      const pixelWrapperElement = document.getElementById("pixels");
-
-      // clear wrapper
-      pixelWrapperElement.innerHTML = '';
-
-      // Render calendar.
-      const monthNames = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
-      [...Array(12)].forEach((_, month) => {
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const monthPixels = [...Array(daysInMonth)].map((_, day) => {
-          const dayOfYear = calcDayOfYear(year, month, day);
-          const color = colors[dayOfYear] || 0;
-          return `<div _='install Pixel'><i class='clickable icon overflow-hidden bg-blend-multiply rounded-5 color-${color}' data-color='${color}'></i></div>`
-        }).join("");
-        const title = `<div class="text-center">${monthNames[month]}</div>`;
-        pixelWrapperElement.insertAdjacentHTML('beforeend', `<div class='d-flex flex-column'>${title}${monthPixels}</div>`);
-      });
-
-      document.getElementById("title").innerText = `${year}`;
-      let positiveCategory = category;
-      while (positiveCategory < 0) { positiveCategory += CATEGORY_SUGGESTIONS.length; }
-      document.getElementById("category").innerText = loadCategories(year)[category] ?? `${CATEGORY_SUGGESTIONS[positiveCategory % CATEGORY_SUGGESTIONS.length]}?`;
-      document.getElementById("category").dataset.category = category;
-
-      if (!initialRender) {
-        // reinstall behaviors
-        _hyperscript.processNode(pixelWrapperElement);
-      }
-
-      initialRender = false;
-    }
-
-    render();
-  </script>
+  <script type="module" src="./index.mjs"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
