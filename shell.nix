@@ -1,11 +1,13 @@
 { pkgs ? import <nixpkgs> {
     config.allowUnfree = true;
+    config.android_sdk.accept_license = true;
     } }:
   let
     overrides = (builtins.fromTOML (builtins.readFile ./rust-toolchain.toml));
     libPath = with pkgs; lib.makeLibraryPath [
       # load external libraries that you need in your rust project here
     ];
+    androidenv = pkgs.androidenv;
 in
   pkgs.mkShell rec {
     nativeBuildInputs = with pkgs; [
@@ -33,6 +35,8 @@ in
         webkitgtk_4_1
         openssl
         android-studio
+        androidenv.androidPkgs.platform-tools
+        # androidenv.androidPkgs.androidsdk
     ];
 
     RUSTC_VERSION = overrides.toolchain.channel;
@@ -40,10 +44,14 @@ in
     # https://github.com/rust-lang/rust-bindgen#environment-variables
     LIBCLANG_PATH = pkgs.lib.makeLibraryPath [ pkgs.llvmPackages_latest.libclang.lib ];
 
+      # export PATH=$PATH:''${RUSTUP_HOME:-~/.rustup}/toolchains/$RUSTC_VERSION-x86_64-unknown-linux-gnu/bin/
     shellHook = ''
       export PATH=$PATH:''${CARGO_HOME:-~/.cargo}/bin
-      export PATH=$PATH:''${RUSTUP_HOME:-~/.rustup}/toolchains/$RUSTC_VERSION-x86_64-unknown-linux-gnu/bin/
-      '';
+          export RUSTUP_TOOLCHAIN=${RUSTC_VERSION}
+        export ANDROID_HOME="$HOME/Android/Sdk"
+        export ANDROID_SDK_ROOT="$ANDROID_HOME"
+        export PATH="$PATH:$ANDROID_HOME/platform-tools"
+    '';
 
     # Add precompiled library to rustc search path
     RUSTFLAGS = (builtins.map (a: ''-L ${a}/lib'') [
