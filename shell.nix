@@ -14,12 +14,10 @@ in
         pkg-config
         gobject-introspection
         cargo 
-        # cargo-tauri # Optional, Only needed if Tauri doesn't work through the traditional way.
         nodejs # Optional, this is for if you have a js frontend
     ];
     buildInputs = with pkgs; [
       clang
-      # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
       llvmPackages_20.bintools
       rustup
         at-spi2-atk
@@ -36,7 +34,7 @@ in
         openssl
         android-studio
         androidenv.androidPkgs.platform-tools
-        # androidenv.androidPkgs.androidsdk
+        xdg-utils
     ];
 
     RUSTC_VERSION = overrides.toolchain.channel;

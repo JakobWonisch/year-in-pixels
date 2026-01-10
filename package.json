@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri",
-    "tauri:desktop": "tauri dev",
+    "tauri:desktop:dev": "tauri dev",
+    "tauri:desktop:prod": "tauri build",
     "tauri:android:dev": "tauri android dev",
     "tauri:android:prod": "tauri android build",
     "tauri:android:apk": "tauri android build --apk",
