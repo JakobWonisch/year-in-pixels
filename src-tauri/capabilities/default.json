@@ -7,14 +7,6 @@
   ],
   "permissions": [
     "core:default",
-    "opener:default",
-    {
-      "identifier": "http:default",
-      "allow": [
-        {
-          "url": "http://192.168.0.21:1430/*"
-        }
-      ]
-    }
+    "opener:default"
   ]
 }
