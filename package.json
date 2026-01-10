@@ -8,10 +8,14 @@
     "tauri:desktop": "tauri dev",
     "tauri:android:dev": "tauri android dev",
     "tauri:android:prod": "tauri android build -- --aab",
-    "tauri:android:apk": "npm run tauri android build -- --apk"
+    "tauri:android:apk": "npm run tauri android build -- --apk",
+    "vite:dev": "vite",
+    "vite:build": "vite build",
+    "vite:preview": "vite preview"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2"
+    "@tauri-apps/cli": "^2",
+    "vite": "^7.2.4"
   },
   "dependencies": {
     "@tauri-apps/plugin-http": "^2.5.5"

@@ -4,7 +4,10 @@
   "version": "0.1.0",
   "identifier": "com.jakob.year-in-pixels",
   "build": {
-    "frontendDist": "../src"
+    "beforeDevCommand": "npm run vite:dev",
+    "beforeBuildCommand": "npm run vite:build",
+    "devUrl": "http://192.168.0.21:5173",
+    "frontendDist": "../dist"
   },
   "app": {
     "withGlobalTauri": true,
